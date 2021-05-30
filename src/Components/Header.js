@@ -1,6 +1,7 @@
 import React from "react";
 
-export default () => (
+// eslint-disable-next-line
+export default () => ( 
     <header>
         <ul>
             <li>
