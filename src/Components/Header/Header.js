@@ -1,8 +1,9 @@
 import React from "react";
+import "./Header.css";
 
 // eslint-disable-next-line
 export default () => ( 
-    <header>
+    <header className="nav">
         <ul>
             <li>
                 <a href="/">Movies</a>
