@@ -8,3 +8,12 @@ learning React and ES6 by building a Movie App.
 - [ ] TV Shows
 - [ ] Search
 - [ ] Detail
+
+
+## API Verbs
+
+- [ ] Now playing (Moive)
+- [ ] Upcoming (Movie)
+- [ ] Top Rated (TV, Movie)
+- [ ] Popular (TV, Movie)
+- [ ] Airing Today (TV)
