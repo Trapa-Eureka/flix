@@ -48,7 +48,7 @@ export default class extends React.Component {
         // eslint-disable-next-line
         const { result, error, loading } = this.state;
         // console.log(this.state);
-        console.log(result);
+        // console.log(result);
         return (
             <DetailPresenter 
                 result={result}
