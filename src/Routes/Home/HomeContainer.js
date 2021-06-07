@@ -1,7 +1,7 @@
 import React from "react";
 // eslint-disable-next-line
 import HomePresenter from "./HomePresenter";
-import { moviesApi } from "api";
+import { moviesApi } from "../../api";
 
 export default class extends React.Component {
     state = {

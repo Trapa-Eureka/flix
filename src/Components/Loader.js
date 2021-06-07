@@ -10,4 +10,4 @@ const Container = styled.div`
     color: rgba(225,225,225,0.3);
 `;
 
-export default () => <Container>Loading</Container>
+export default () => (<Container>Loading</Container>);

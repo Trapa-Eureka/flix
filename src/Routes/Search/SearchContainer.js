@@ -1,14 +1,14 @@
 import React from "react";
-import { moviesApi, tvApi } from "../../api";
 import SearchPresenter from "./SearchPresenter";
+import { moviesApi, tvApi } from "../../api";
 
 export default class extends React.Component {
     state = {
         movieResults: null,
         tvResults: null,
         searchTerm: "",
-        error: null,
-        loading: false
+        loading: false,
+        error: null
     };
 
     handleSubmit = (event) => {
