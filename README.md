@@ -20,3 +20,10 @@ learning React and ES6 by building a Movie App.
 - [x] TV Show Detail
 - [x] Movie Detail
 - [x] Search Movies (Movie, TV)
+
+## More
+
+- [ ] imdb_id(IMDB) Link
+- [ ] production_companies & logo, YT video, countries (Tab inside)
+- [ ] collection Link (/collections Route : Collections -> Get Detail)
+- [ ] On TV Show, show seasons and creators

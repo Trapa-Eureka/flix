@@ -145,10 +145,33 @@ const Trailer = styled.div`
     }
 `;
 
-const Homepage = styled.a`
-    cursor: pointer;
+const OuterLink = styled.div`
+    display: flex;
+    flex-direction: row;
     top: 50px;
     position: relative;
+`;
+
+const Imdb = styled.a`
+    width: 217px;
+    height: 57px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 2rem;
+    color: #000;
+    background-color: rgba(225, 225, 225);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem;
+    &:hover {
+        background-color: rgba(225, 225, 225, 0.7);
+    }
+`;
+
+const Homepage = styled.a`
+    cursor: pointer;
     font-weight: bold;
     font-size: 25px;
     line-height: 2rem;
@@ -161,6 +184,7 @@ const Homepage = styled.a`
     will-change: background-color, color;
     width: 217px;
     height: 57px;
+    margin-left: 10px;
     &:hover {
         background-color: rgba(109, 109, 110, 0.4);
     }
@@ -268,7 +292,10 @@ const DetailPresenter = ({result, loading, error}) => (
                         </Item>
                     </ItemContainer>
                     <Overview>{result.overview}</Overview>
-                    <Homepage href={result.homepage} target="_blank">More Info</Homepage>
+                    <OuterLink>
+                        <Imdb href={`https://www.imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</Imdb>
+                        <Homepage href={result.homepage} target="_blank">More Info</Homepage>
+                    </OuterLink>
                     <Offer>
                         <OpenInfo>
                             <span>{result.status}</span>
