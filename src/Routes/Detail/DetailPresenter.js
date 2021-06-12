@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
+import Helmet from "react-helmet";
 import YouTube from 'react-youtube';
 
 const Container = styled.div`
@@ -221,9 +222,20 @@ const Subtitle = styled.span`
 
 const DetailPresenter = ({result, loading, error}) => (
     loading ? (
-        <Loader />
+        <>
+            <Helmet>
+                <title>Loading | Flix</title>
+            </Helmet>
+            <Loader />
+        </>
     ) : (
         <Container>
+            <Helmet>
+                <title>
+                    {result.original_title ? result.original_title : result.original_name}{" "}
+                    | Flix
+                </title>
+            </Helmet>
             <Backdrop 
                 bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
             />
