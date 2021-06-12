@@ -5,6 +5,7 @@ import TV from "../Routes/TV";
 import Header from "./Header";
 import Search from "../Routes/Search";
 import Detail from "../Routes/Detail";
+import Collection from "../Routes/Collection";
 
 // eslint-disable-next-line
 export default () => (
@@ -17,6 +18,7 @@ export default () => (
         <Route path="/search" component={Search} />
         <Route path="/movie/:id" component={Detail} />
         <Route path="/show/:id" component={Detail} />
+        <Route path="/collection/:id" component={Collection} />
         <Redirect from="*" to="/" />
       </Switch>
     </>

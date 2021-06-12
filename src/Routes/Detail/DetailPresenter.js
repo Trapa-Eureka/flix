@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Helmet from "react-helmet";
-import YouTube from 'react-youtube';
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -244,6 +243,43 @@ const Subtitle = styled.span`
     }
 `;
 
+const MoiveContainer = styled.div``;
+
+const Video = styled.iframe``;
+
+const CollectionDetail = styled.a`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px 25px;
+    background-color: rgba(51,51,51,.6);
+    width: 100%;
+    height: 54px;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 54px;
+        margin-left: -25px;
+        background-color: #3498db;
+    }
+    span {
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 15px;
+        -webkit-font-smoothing: antialiased;
+        &:first-child {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+        &:last-child {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+        }
+    }
+`;
+
 const DetailPresenter = ({result, loading, error}) => (
     loading ? (
         <>
@@ -313,14 +349,24 @@ const DetailPresenter = ({result, loading, error}) => (
                 </Data>
 
                 <Media>
+                    {result.belongs_to_collection ?
+                        <>
+                            <CollectionDetail href={`/collection/${result.belongs_to_collection.id}`}>
+                                <span>more</span>
+                                <span>Collection</span>
+                            </CollectionDetail>
+                        </> : ''
+                    }
                     <Cover bgImage={
                             result.poster_path
                             ? `https://image.tmdb.org/t/p/original${result.poster_path}`
                             : require("../../assets/noPoster.png")
                         } 
                     />
-                    <Trailer>
-                        <YouTube videoId={result.videos.id} />
+                    <Trailer current={"video"}>
+                        <MoiveContainer>
+                            <Video width="100%" height="100%" src={`https://www.youtube.com/embed/${result.videos.results[0].key}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                        </MoiveContainer>
                     </Trailer>
                 </Media>
             </Content>
