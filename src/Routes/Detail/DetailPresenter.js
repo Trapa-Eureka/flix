@@ -21,6 +21,7 @@ const Backdrop = styled.div`
     background-image: url(${props => props.bgImage});
     background-position: center center;
     background-size: cover;
+    background-repeat: no-repeat;
 `;
 
 const Content = styled.div`
