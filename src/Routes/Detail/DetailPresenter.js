@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Helmet from "react-helmet";
+import TabPresenter from "./TabPresenter";
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -332,6 +333,7 @@ const DetailPresenter = ({result, loading, error}) => (
                         <Imdb href={`https://www.imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</Imdb>
                         <Homepage href={result.homepage} target="_blank">More Info</Homepage>
                     </OuterLink>
+                    <TabPresenter result={result} />
                     <Offer>
                         <OpenInfo>
                             <span>{result.status}</span>

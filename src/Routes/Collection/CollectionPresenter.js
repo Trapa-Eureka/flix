@@ -20,7 +20,11 @@ const CollectionPresenter = ({result, loading, error}) =>
             <Loader />
         </>
     ) : (
-        <Container></Container>
+        <Container>
+            <Helmet>
+                <title>{result.name} | Flix</title>
+            </Helmet>
+        </Container>
     );
 
 CollectionPresenter.prototype = {
