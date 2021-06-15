@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import Loader from "../../Components/Loader";
 import Poster from "../../Components/Poster";
+import NoDetailBg from "../../assets/collectNoBg.jpeg";
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -30,7 +31,7 @@ const Content = styled.div`
     position: relative;
     z-index: 1;
     height: 100%;
-    padding: 230px 0 0 0;
+    padding: 8% 0 0 0; /* 230px 0 0 0 */
     background: -moz-linear-gradient(left,  rgba(0,0,0,1) -10%, rgba(0,0,0,0) 95%);
     background: -webkit-linear-gradient(left,  rgba(0,0,0,1) -10%,rgba(0,0,0,0) 95%);
     background: linear-gradient(to right,  rgba(0,0,0,1) -10%,rgba(0,0,0,0) 95%);
@@ -110,8 +111,11 @@ const CollectionPresenter = ({result, loading, imageUrl, error}) =>
             <Helmet>
                 <title>{result.name} | Flix</title>
             </Helmet>
-            <Backdrop 
-                bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+            <Backdrop
+                bgImage={
+                    result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
+                    : NoDetailBg
+                }
             />
             <Content>
                 <InfoText>

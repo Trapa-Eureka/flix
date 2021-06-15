@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Helmet from "react-helmet";
 import TabPresenter from "./TabPresenter";
+import NoDetailBg from "../../assets/nobg.jpg";
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -31,7 +32,7 @@ const Content = styled.div`
     position: relative;
     z-index: 1;
     height: 100%;
-    padding: 230px 0 0 0;
+    padding: 8% 0 0 0; /* 230px 0 0 0 */
     background: -moz-linear-gradient(left,  rgba(0,0,0,1) -10%, rgba(0,0,0,0) 95%);
     background: -webkit-linear-gradient(left,  rgba(0,0,0,1) -10%,rgba(0,0,0,0) 95%);
     background: linear-gradient(to right,  rgba(0,0,0,1) -10%,rgba(0,0,0,0) 95%);
@@ -56,7 +57,7 @@ const Title = styled.span`
     font-size: 53px;
     font-weight: bold;
     letter-spacing: 2px;
-    width: 720px;
+    width: 100%; /* 720px */
     word-break: keep-all;
     line-height: 53px;
 `;
@@ -282,6 +283,21 @@ const CollectionDetail = styled.a`
     }
 `;
 
+const Blank = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(20, 20, 20, 0.8);
+    span {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 20px;
+        font-weight: 500;
+    }
+`;
+
 const DetailPresenter = ({result, loading, error}) => (
     loading ? (
         <>
@@ -298,9 +314,14 @@ const DetailPresenter = ({result, loading, error}) => (
                     | Flix
                 </title>
             </Helmet>
-            <Backdrop 
-                bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+
+            <Backdrop
+                bgImage={
+                    result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
+                    : NoDetailBg
+                }
             />
+
             <Content>
                 <Data>
                     <Genres>
@@ -368,7 +389,16 @@ const DetailPresenter = ({result, loading, error}) => (
                     />
                     <Trailer current={"video"}>
                         <MoiveContainer>
-                            <Video width="100%" height="100%" src={`https://www.youtube.com/embed/${result.videos.results[0].key}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                            {result.videos.results?.[0]?.key ?
+                                <Video
+                                    width="100%"
+                                    height="100%"
+                                    src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen title="video"
+                                /> : <Blank><span>None</span></Blank>
+                            }
                         </MoiveContainer>
                     </Trailer>
                 </Media>
