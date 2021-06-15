@@ -6,7 +6,7 @@ import ReactCountryFlag from "react-country-flag";
 
 const STabs = styled(Tabs)`
     width: 63%;
-    margin-top: 94px;
+    margin-top: 6%;
     /* max-height: 40vh; */
     height: auto;
     position: relative;

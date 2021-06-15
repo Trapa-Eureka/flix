@@ -53,7 +53,7 @@ const Genres = styled.span`
 
 const Title = styled.span`
     display: block;
-    margin-top: 30px;
+    margin-top: 3%;
     font-size: 53px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -63,7 +63,7 @@ const Title = styled.span`
 `;
 
 const ItemContainer = styled.div`
-    margin-top: 30px;
+    margin-top: 3%;
     font-size: 17px;
     font-weight: 500;
     color: #adadad;
@@ -150,7 +150,7 @@ const Trailer = styled.div`
 const OuterLink = styled.div`
     display: flex;
     flex-direction: row;
-    top: 50px;
+    top: 3.5%;
     position: relative;
 `;
 
@@ -333,42 +333,76 @@ const DetailPresenter = ({result, loading, error}) => (
                         }
                     </Genres>
                     <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                    
                     <ItemContainer>
-                        <Year>
-                            {result.release_date
-                                ? result.release_date.substring(0, 4)
-                                : result.first_air_date.substring(0, 4)
-                                && result.last_air_date.substring(0, 4)
-                            }
-                        </Year>
-                        <Director>
-                            <span>Maid : </span>
-                            {result.production_companies && result.production_companies[0].name}
-                        </Director>
-                        <Item>
-                            <span>Running Time : </span>
-                            {result.runtime || result.episode_run_time[0]} min
-                        </Item>
+                        {result.release_date ?
+                            <>
+                                <Year>
+                                    {result.release_date
+                                        ? result.release_date.substring(0, 4)
+                                        : result.first_air_date.substring(0, 4)
+                                        && result.last_air_date.substring(0, 4)
+                                    }
+                                </Year>
+                            </> : ''
+                        }
+
+                        {result.production_companies?.[0]?.name ?
+                            <Director>
+                                <span>Maid : </span>
+                                {result.production_companies[0].name}
+                            </Director> : null
+                        }
+                        
+                        {result.runtime ?
+                            <>
+                                <Item>
+                                    <span>Running Time : </span>
+                                    {result.runtime || result.episode_run_time[0]} min
+                                </Item>
+                            </> : <Item>
+                                <span>Running Time : </span>
+                                None
+                            </Item>
+                        }
                     </ItemContainer>
+
                     <Overview>{result.overview}</Overview>
                     <OuterLink>
-                        <Imdb href={`https://www.imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</Imdb>
-                        <Homepage href={result.homepage} target="_blank">More Info</Homepage>
+                        <Imdb href={
+                            result.imdb_id
+                            ? `https://www.imdb.com/title/${result.imdb_id}`
+                            : `null`
+                        } target="_blank">IMDB</Imdb>
+                        <Homepage href={
+                            result.homepage
+                            ? result.homepage
+                            : `null`
+                        } target="_blank">More Info</Homepage>
                     </OuterLink>
                     <TabPresenter result={result} />
                     <Offer>
                         <OpenInfo>
                             <span>{result.status}</span>
                         </OpenInfo>
-                        <Subtitle>
-                            <span>Subtitles : </span>
-                            {result.spoken_languages &&
-                                result.spoken_languages.map((language, index) =>
-                                    index === result.spoken_languages.length - 1
-                                        ? language.english_name : `${language.english_name} | `
-                                )
-                            }
-                        </Subtitle>
+
+                        {result.spoken_languages ?
+                            <>
+                                <Subtitle>
+                                    <span>Subtitles : </span>
+                                    {result.spoken_languages &&
+                                        result.spoken_languages.map((language, index) =>
+                                            index === result.spoken_languages.length - 1
+                                                ? language.english_name : `${language.english_name} | `
+                                        )
+                                    }
+                                </Subtitle>
+                            </> : <Subtitle>
+                                <span>Subtitles : </span>
+                                {result.spoken_languages} null
+                            </Subtitle>
+                        }
+                        
                     </Offer>
                 </Data>
 
